@@ -26,6 +26,8 @@ server {
         proxy_set_header        X-Forwarded-For ${VAR}proxy_add_x_forwarded_for;
         proxy_set_header        X-Forwarded-Port 443;
         proxy_set_header        X-Forwarded-Proto https;
+        proxy_set_header        X-X509-Issuer-DN ${VAR}ssl_client_i_dn;
+        proxy_set_header        X-X509-Subject-DN ${VAR}ssl_client_s_dn;
     }
 
     location /saml/ {

@@ -21,7 +21,7 @@ SESSION_COOKIE_SECURE = True
 
 PLUGIN_CHAIN = ["turnpike.plugins.auth.AuthPlugin", "turnpike.plugins.rh_identity.RHIdentityPlugin"]
 
-AUTH_PLUGIN_CHAIN = ["turnpike.plugins.saml.SAMLAuthPlugin"]
+AUTH_PLUGIN_CHAIN = ["turnpike.plugins.x509.X509AuthPlugin", "turnpike.plugins.saml.SAMLAuthPlugin"]
 
 DEFAULT_RESPONSE_CODE = 200
 
