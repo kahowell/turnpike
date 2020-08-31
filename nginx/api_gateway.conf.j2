@@ -26,6 +26,8 @@ server {
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header        X-Forwarded-Port 443;
         proxy_set_header        X-Forwarded-Proto https;
+        proxy_set_header        X-X509-Issuer-DN $ssl_client_i_dn;
+        proxy_set_header        X-X509-Subject-DN $ssl_client_s_dn;
         {% for header in headers %}
         proxy_set_header        {{ header }} $http_{{ header.lower().replace('-', '_') }};
         {% endfor %}
