@@ -1,5 +1,6 @@
 import os
 import redis
+import yaml
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
@@ -17,3 +18,12 @@ SESSION_REDIS = redis.Redis(
 )
 PERMANENT_SESSION_LIFETIME = 60 * 60 * 4
 SESSION_COOKIE_SECURE = True
+
+PLUGIN_CHAIN = ["turnpike.plugins.auth.AuthPlugin"]
+
+AUTH_PLUGIN_MAP = ["turnpike.plugins.saml.SAMLAuthPlugin"]
+
+DEFAULT_RESPONSE_CODE = 200
+
+with open(os.environ["BACKENDS_CONFIG_MAP"]) as ifs:
+    BACKENDS = yaml.safe_load(ifs)
