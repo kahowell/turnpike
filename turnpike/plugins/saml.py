@@ -130,6 +130,7 @@ blueprint.add_url_rule("/sls/", view_func=SLSView.as_view("saml-sls"))
 
 class SAMLAuthPlugin(TurnpikeAuthPlugin):
     name = "saml-auth"
+    principal_type = "Associate"
 
     def register_blueprint(self):
         self.app.register_blueprint(blueprint)
@@ -143,7 +144,7 @@ class SAMLAuthPlugin(TurnpikeAuthPlugin):
         if "saml" in backend_auth and "samlUserdata" in session:
             auth_data = session["samlUserdata"].items()
             logger.debug(f"SAML auth_data: {auth_data}")
-            context.auth = {k: v if len(v) > 1 else v[0] for k, v in auth_data}
+            context.auth = dict(auth_data={k: v if len(v) > 1 else v[0] for k, v in auth_data}, auth_plugin=self)
             predicate = backend_auth["saml"]
             authorized = eval(predicate, dict(user=auth_data))
             if not authorized:

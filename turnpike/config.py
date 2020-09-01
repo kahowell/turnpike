@@ -19,7 +19,7 @@ SESSION_REDIS = redis.Redis(
 PERMANENT_SESSION_LIFETIME = 60 * 60 * 4
 SESSION_COOKIE_SECURE = True
 
-PLUGIN_CHAIN = ["turnpike.plugins.auth.AuthPlugin"]
+PLUGIN_CHAIN = ["turnpike.plugins.auth.AuthPlugin", "turnpike.plugins.rh_identity.RHIdentityPlugin"]
 
 AUTH_PLUGIN_MAP = ["turnpike.plugins.saml.SAMLAuthPlugin"]
 
