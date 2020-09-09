@@ -130,9 +130,9 @@ The evaluation would use set-logic to look for overlaps. If there were any overl
 contains two attributes: `subject_dn` and `issuer_dn` which can be used to further restrict which certs can be used
 (nginx already verifies the trust chain based on the configured CA file).
 
-For example to restrict the endpoint to a certificate with the DN of `CN=test`, you could use:
+For example to restrict the endpoint to a certificate with the DN of `/CN=test`, you could use:
 
-    x509['subject_dn'] == 'CN=test'
+    x509['subject_dn'] == '/CN=test'
 
 Note that CRL and/or OCSP support should be configured in `NGINX_SSL_CONFIG` as needed.
 
